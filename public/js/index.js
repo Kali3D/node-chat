@@ -10,7 +10,7 @@ socket.on("newMessage", function(message) {
 	console.log("New message received", message);
 });
 
-socket.emit("createMessage", {
-	to: "Oliv",
-	text: "You're kro fort !"
-});
+// socket.emit("createMessage", {
+// 	to: "Oliv",
+// 	text: "You're kro fort !"
+// });
