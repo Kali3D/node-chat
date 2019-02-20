@@ -18,11 +18,13 @@ socket.on("newLocationMessage", function(message) {
 
 $("#messageForm").on("submit", function(event){
 	event.preventDefault();
+	const messageInput = $("#message")
 	socket.emit("createMessage", {
 		from: "Nico",
-		text: $("#message").val()
-	}, function(data) {
-		console.log("got it ! : ", data);
+		text: messageInput.val()
+	}, function() {
+		messageInput.val("");
+		messageInput.focus();
 	});
 });
 
@@ -31,12 +33,15 @@ locationButton.on("click", function(event) {
 	event.preventDefault();
 	if (!navigator.geolocation)
 		return alert("Geolocalisation non disponible");
+	locationButton.attr("disabled", "disabled").html("Envoi en cours ...");
 	navigator.geolocation.getCurrentPosition(function(position) {
 		socket.emit("createLocationMessage", {
 			latitude: position.coords.latitude,
 			longitude: position.coords.longitude
 		});
+		locationButton.removeAttr("disabled").html("Envoyer la localisation");
 	}, function() {
-		alert("Impossible de recuperer la localisation")
+		locationButton.removeAttr("disabled").html("Envoyer la localisation");
+		alert("Impossible de recuperer la localisation");
 	});
 });

@@ -2,18 +2,25 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/css/index.css" />
 		<title>Chat App</title>
 	</head>
-	<body>
-		<p>Welcome to the Chat App !</p>
-		
-		<ol id="messages"></ol>
-
-		<form id="messageForm">
-			<input type="text" name="message" id="message" placeholder="Message" />
-			<button>Envoyer</button>
-		</form>
-		<button id="location">Envoyer la localisation</button>
+	<body class="chat">
+		<div class="chat__sidebar">
+			<h3>People</h3>
+			<div id="users"></div>
+		</div>
+		<div class="chat__main">
+			<ol class="chat__messages" id="messages"></ol>
+			<div class="chat__footer">
+				<form id="messageForm">
+					<input type="text" name="message" id="message" 
+						placeholder="Message" autofocus autocomplete="off"/>
+					<button>Envoyer</button>
+				</form>
+				<button id="location">Envoyer la localisation</button>
+			</div>
+		</div>
 		
 
 
