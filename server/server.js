@@ -15,6 +15,8 @@ const io = socketIO(server);
 
 io.on("connection", socket => {
 	console.log("New user connected");
+	socket.emit("newMessage", {from: "admin", text: "Welcome to the Chat App", createdAt: Date.now()});
+	socket.broadcast.emit("newMessage", {from: "admin", text: "New user joined", createdAt: Date.now()});
 	
 	socket.on("disconnect", () => {
 		console.log("User disconnected");
@@ -22,7 +24,11 @@ io.on("connection", socket => {
 
 	socket.on("createMessage", message => {
 		console.log("Message created", message);
+
+
+
 		io.emit("newMessage", {...message, createdAt: Date.now()});
+//		socket.broadcast.emit("newMessage", {...message, createdAt: Date.now()});
 	});
 
 /*	socket.emit("newMessage", {
