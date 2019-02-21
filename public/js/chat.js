@@ -33,7 +33,6 @@ socket.on("connect", function() {
 socket.on("disconnect", function() {
 	console.log("Disconnected from server");
 });
-
 socket.on("updateUserList", function(users) {
 	const ol = $("<ol></ol>");
 	for (let user of users)
@@ -69,7 +68,6 @@ $("#messageForm").on("submit", function(event){
 	event.preventDefault();
 	const messageInput = $("#message")
 	socket.emit("createMessage", {
-		from: "Nico",
 		text: messageInput.val()
 	}, function() {
 		messageInput.val("");
